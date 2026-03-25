@@ -41,5 +41,9 @@ model=FSDPModel(
 [ ... truncated ...]
   Step 74140/100000
 [ ... truncated ...]
+  Step 89500/100000
+  Step 99990/100000
+Completed 100000 steps without error!
+
 
 
