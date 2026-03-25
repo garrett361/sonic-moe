@@ -1,0 +1,40 @@
+❯ CUDA_LAUNCH_BLOCKING=1 torchrun --nproc-per-node 2  fsdp_hang_tests/sonic_hang_min.py --timeout 30
+W0325 18:38:57.614000 3325597 torch/distributed/run.py:862]
+W0325 18:38:57.614000 3325597 torch/distributed/run.py:862] *****************************************
+W0325 18:38:57.614000 3325597 torch/distributed/run.py:862] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+W0325 18:38:57.614000 3325597 torch/distributed/run.py:862] *****************************************
+args=Namespace(steps=100000, num_experts=128, num_layers=4, top_k=16, hidden_dim=128, model_dim=2048, seq_len=2048, batch_size=8, timeout=30)
+ninja: no work to do.
+/proj/data-eng/goon/garrett361/sonic-moe/.venv/lib/python3.12/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.
+  return func(*args, **kwargs)
+[rank0]:[W325 18:39:03.700162260 ProcessGroupNCCL.cpp:5325] Guessing device ID based on global rank. This can cause a hang if rank to GPU mapping is heterogeneous. You can specify device_id in init_process_group()
+Running 100000 steps
+model=FSDPModel(
+  (layers): ModuleList(
+    (0-3): 4 x FSDPSonicMoELayer(
+      (gate): Linear(in_features=2048, out_features=128, bias=False)
+    )
+  )
+  (input): Linear(in_features=2048, out_features=2048, bias=False)
+  (output): Linear(in_features=2048, out_features=2048, bias=False)
+)
+
+  Step 0/100000
+  Step 10/100000
+  Step 20/100000
+  Step 30/100000
+  Step 40/100000
+  Step 50/100000
+  Step 60/100000
+  Step 70/100000
+  Step 80/100000
+  Step 90/100000
+  Step 100/100000
+[ ... truncated ...]
+  Step 10490/100000
+  Step 10500/100000
+  Step 10510/100000
+  Step 10520/100000
+  Step 10530/100000
+[ ... truncated ...]
+
